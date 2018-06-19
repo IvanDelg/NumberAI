@@ -35,6 +35,7 @@ void draw(){
      System.out.println(guess);
      GuessGiven=true;
       if(GuessIsRight==true){
+        saveInfo();
         return;
       }
       if(GuessIsRight==false){
@@ -124,7 +125,10 @@ void getInfo(){
   int Corners=0;
   int FirstPixelX=0;
   int FirstPixelY=0;
+  int LastPixelX=500;
+  int LastPixelY=500;
   boolean FoundFirstPixel=false;
+  boolean FoundFirstThing=false;
   String FirstThingFound="";
   for(int row=0;row<501;row++){
     for(int col=0;col<501;col++){
@@ -140,12 +144,37 @@ void getInfo(){
         break;        
     }
   }
-  int[][] Block={{FirstPixelX,FirstPixelX},{FirstPixelY,10}};
+  for(int row=0;row<501;row++){
+    for(int col=0;col<501;col++){
+      if(get(row,col)!=255&&col>LastPixelX&&row>LastPixelY){
+        LastPixelX=col;
+        LastPixelY=row;
+      }  
+    }
+  }
+  int DistanceFromFirstToLast=(int)sqrt(((LastPixelX-FirstPixelX)*(LastPixelX-FirstPixelX))+((LastPixelY-FirstPixelY)*(LastPixelY-FirstPixelY)));
+  ArrayList<Pixel> ListOfPixelsInBox=new <Pixel> ArrayList();
+  for(int ROW=0;ROW<30;ROW++){
+    for(int COL=0;COL<40;COL++){
+      //ListOfPixelsInBox.add(new Pixel(FirstPixelX+COL));
+    }
+  }
   while(true){
-    break;
+    
+    
+    
+    
+    if(FoundFirstThing==true){
+      break;
+    }
   }
   NumOfCorners=Corners;
   NumOfHorLines=HorLines;
   NumOfVerLines=VerLines;
   NumOfEnds=Ends;
+}
+void saveInfo(){
+  
+  
+  
 }
